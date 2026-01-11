@@ -14,7 +14,7 @@ const todo = (button) => {
 
   addButton.addEventListener("click", () => {
     const todoText = todoInput.value.trim();
-    todoList.innerHTML += `<li>${todoText}</li>`;
+    todoList.innerHTML += `<input type="checkbox" ><li>${todoText}</li>`;
     todoInput.value = "";
   });
   todoList.addEventListener("click", (e) => {
