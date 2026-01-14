@@ -1,26 +1,15 @@
-const todo = (button) => {
-  document.body.innerHTML = `
-     <div id="container">
-     <h1>Todo List</h1>
-      <input type="text" id="todo-input" />
-      <label for="todo-input"></label>
-      <button id="add-button">${button}</button>
-      <ul id="todoList"></ul>
-    </div>
-  `;
-  const addButton = document.getElementById("add-button");
-  const todoInput = document.getElementById("todo-input");
-  const todoList = document.getElementById("todoList");
+try {
+  const response = await fetch("https://dog.ceo/api/breeds/image/random");
+  if (!response.ok) {
+    throw new Error("this message is not here");
+  }
+  const data = await response.json();
 
-  addButton.addEventListener("click", () => {
-    const todoText = todoInput.value.trim();
-    todoList.innerHTML += `<input type="checkbox" ><li>${todoText}</li>`;
-    todoInput.value = "";
-  });
-  todoList.addEventListener("click", (e) => {
-    if (e.target.tagName === "li") {
-      e.target.classList.toggle("completed");
-    }
-  });
-};
-todo("ADD");
+  const image = document.createElement("img");
+  const para = document.createElement("p");
+  image.src = data.message;
+  image.alt = "my new dog";
+  para.innerHTML = data.status;
+  document.body.appendChild(image);
+  document.body.appendChild(para);
+} catch (error) {}
