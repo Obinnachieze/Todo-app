@@ -10,9 +10,9 @@ try {
 
     const data = await response.json();
     // console.log(data);
-
+    const firstPostId = [];
     const para = document.createElement("p");
-    para.innerHTML = data[0].title;
+    para.innerHTML = data.title;
 
     para.innerHTML = data.body;
 
