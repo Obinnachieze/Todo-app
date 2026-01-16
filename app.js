@@ -1,18 +1,26 @@
 try {
   const get = async () => {
-    const response = await fetch("https://dog.ceo/api/breeds/image/random");
+    const response = await fetch(
+      "https://apis.scrimba.com/jsonplaceholder/posts",
+      { method: "GET" }
+    );
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
 
     const data = await response.json();
+    // console.log(data);
 
-    const image = document.createElement("img");
     const para = document.createElement("p");
-    image.src = data.message;
-    image.alt = "my new dog";
-    para.innerHTML = data.status;
-    document.body.appendChild(image);
+    para.innerHTML = data[0].title;
+
+    para.innerHTML = data.body;
+
     document.body.appendChild(para);
   };
   get();
 } catch (error) {
   console.log("error", error);
+} finally {
+  console.log("fetch attempt finished");
 }
