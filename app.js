@@ -2,21 +2,29 @@ try {
   const get = async () => {
     const response = await fetch(
       "https://apis.scrimba.com/jsonplaceholder/posts",
-      { method: "GET" }
+      {
+        method: "POST",
+        body: JSON.stringify({
+          title: "Holiday Plans",
+          body: "when i fought off the dragons",
+          userId: 10000,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
     );
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
     const data = await response.json();
-    // console.log(data);
-    const firstPostId = [];
-    const para = document.createElement("p");
-    para.innerHTML = data.title;
+    console.log(data);
+    // const firstPostId = [];
+    // const para = document.createElement("p");
+    // para.innerHTML = data.title;
 
-    para.innerHTML = data.body;
-
-    document.body.appendChild(para);
+    // para.innerHTML = data.body;
   };
   get();
 } catch (error) {
