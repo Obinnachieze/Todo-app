@@ -1,30 +1,51 @@
-function preLoading(url) {
-  // We create the image object in memory, but don't add it to the DOM yet
-  const img = new Image();
+function upLoad() {
+  return new Promise((resolve) => {
+    console.log("uploading...");
+    setTimeout(() => {
+      resolve("done uploading");
+    }, 2000);
+  });
+}
+async function logUpLoad() {
+  try {
+    const result = await upLoad();
+    console.log(result);
+  } catch (error) {}
+}
+logUpLoad();
 
-  return new Promise((resolve, reject) => {
-    img.onload = () => resolve(img); // Resolve with the actual image element
-    img.onerror = () => reject(new Error(`Could not load image at ${url}`));
-
-    img.src = url;
+function fetchData() {
+  return new Promise((resolve) => {
+    console.log("fetching data...");
+    setTimeout(() => {
+      resolve("data fetched");
+    }, 5000);
   });
 }
 
-const init = async () => {
+const fetchDataAsync = async () => {
   try {
-    // 1. Wait for the image to download fully in the background
-    const loadedImg = await preLoading(
-      "https://scrimba.ams3.cdn.digitaloceanspaces.com/files/assets/courses/gadvancedjs/scenic1.jpg"
-    );
-
-    // 2. Now that it's ready, add it to the page
-    loadedImg.alt = "scenic photo";
-    document.body.appendChild(loadedImg);
-
-    console.log("Image is now visible and fully loaded!");
-  } catch (error) {
-    console.error("Failed to pre-load:", error.message);
-  }
+    const result = await fetchData();
+    console.log(result);
+  } catch (error) {}
 };
+fetchDataAsync();
 
-init();
+const notifyUser = () => {
+  return new Promise((resolve) => {
+    console.log("notifying user....");
+    setTimeout(() => {
+      resolve("User notified");
+    }, 6000);
+  });
+};
+const notice = async () => {
+  try {
+    const newResult = await notifyUser();
+    console.log(newResult);
+    setTimeout(() => {
+      console.log("All steps completed");
+    }, 7000);
+  } catch (error) {}
+};
+notice();
