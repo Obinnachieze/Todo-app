@@ -1,34 +1,24 @@
-try {
-  const get = async () => {
-    const response = await fetch(
-      "https://apis.scrimba.com/jsonplaceholder/posts",
-      {
-        method: "POST",
-        body: JSON.stringify({
-          title: "Holiday Plans",
-          body: "when i fought off the dragons",
-          userId: 10000,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
+import OpenAI from "openai";
+import "dotenv/config";
 
-    const data = await response.json();
-    console.log(data);
-    // const firstPostId = [];
-    // const para = document.createElement("p");
-    // para.innerHTML = data.title;
+const openai = new OpenAI({
+  apiKey: process.env.GROQ_API_KEY,
+  baseURL: "https://api.groq.com/openai/v1",
+  dangerouslyAllowBrowser: true,
+});
 
-    // para.innerHTML = data.body;
-  };
-  get();
-} catch (error) {
-  console.log("error", error);
-} finally {
-  console.log("fetch attempt finished");
-}
+const message = [
+  {
+    role: "system",
+    content: "you are knowledgeable about airplanes",
+  },
+  {
+    role: "user",
+    content: "tell me about airplanes",
+  },
+];
+const response = await openai.chat.completions.create({
+  model: "llama-3.3-70b-versatile",
+  messages: message,
+});
+console.log("AI Response:", response.choices[0].message.content);
