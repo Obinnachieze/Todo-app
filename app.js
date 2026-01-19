@@ -10,11 +10,12 @@ const openai = new OpenAI({
 const message = [
   {
     role: "system",
-    content: "you are knowledgeable about airplanes",
+    content:
+      "Summarize  exactly 2 sentences. Keep the total length under 500 words. Always end with a full stop. And keep it simple so that a 10 year old can understand.",
   },
   {
     role: "user",
-    content: "tell me about airplanes",
+    content: "Explain the theory of relativity.",
   },
 ];
 const response = await openai.chat.completions.create({
