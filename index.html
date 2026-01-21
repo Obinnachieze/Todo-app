@@ -1,14 +1,40 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <title>Todo app</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=send"
+    />
+    <title>WingMan AI</title>
   </head>
   <body>
-    <div>
-      <h1></h1>
+    <div id="container">
+      <div class="chat-container">
+        <header>
+          <h1>Wing <span>Man</span>AI</h1>
+          <p>Aeronautical Engineering Intelligence</p>
+        </header>
+        <hr />
+        <div id="chat-box" class="chat-box">
+          <div class="message-ai">How can I help you today? today?</div>
+          <div class="message-user"></div>
+        </div>
+
+        <form id="chat-form">
+          <textarea
+            type="text"
+            id="user-input"
+            placeholder="Enter aero concept..."
+            required
+          ></textarea>
+          <button type="submit" id="send-button">
+            <span class="material-symbols-outlined"> send </span>
+          </button>
+        </form>
+      </div>
     </div>
     <!-- <script type="module" src="app.js"></script> -->
     <script type="module" src="app.js"></script>
